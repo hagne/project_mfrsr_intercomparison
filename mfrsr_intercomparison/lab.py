@@ -32,7 +32,10 @@ def chunck_correlation_by_sunelevation(aroAOD_al_new, sfrAOD_al_new, sfr_sunpos_
             out = corr.orthogonla_distance_regression
             out = out['output']
             inters, slope = out.beta
-            r = corr.pearson_r[0]
+            try:
+                r = corr.pearson_r[0]
+            except ValueError:
+                inters, slope, r = (np.nan, np.nan, np.nan)
         else:
             inters, slope, r = (np.nan, np.nan, np.nan)
 
